@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.techshop.worker_menu">
+   <left>
+      <AnchorPane prefHeight="480.0" prefWidth="350.0" style="-fx-background-color: #00E0C7;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="193.0" layoutY="141.0" text="Label" />
+            <VBox layoutY="60.0" prefHeight="421.0" prefWidth="358.0">
+               <children>
+                  <JFXButton onAction="#list_of_tech" prefHeight="42.0" prefWidth="360.0" style="-fx-background-color: #08c6ab;" text="List of haushold appliances">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </JFXButton>
+                  <JFXButton onAction="#search_of_tech" prefHeight="42.0" prefWidth="358.0" style="-fx-background-color: #08c6ab;" text="Search haushold appliances">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </JFXButton>
+                  <JFXButton onAction="#sold_tech" prefHeight="42.0" prefWidth="365.0" style="-fx-background-color: #08c6ab;" text="Sold haushold appliances">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </JFXButton>
+                  <JFXButton onAction="#order_tech" prefHeight="42.0" prefWidth="365.0" style="-fx-background-color: #08c6ab;" text="Order haushold appliances">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </JFXButton>
+                  <JFXButton onAction="#ordered_tech" prefHeight="42.0" prefWidth="365.0" style="-fx-background-color: #08c6ab;" text="Ordered haushold appliances">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </JFXButton>
+                  <JFXButton onAction="#out_of_stock_tech" prefHeight="42.0" prefWidth="365.0" style="-fx-background-color: #08c6ab;" text="Out of stock">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </JFXButton>
+                  <JFXButton onAction="#delete_tech" prefHeight="42.0" prefWidth="365.0" style="-fx-background-color: #08c6ab;" text="Delet from ordered list">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </JFXButton>
+                  <JFXButton onAction="#exit" prefHeight="42.0" prefWidth="368.0" style="-fx-background-color: #08c6ab;" text="Exit">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </JFXButton>
+               </children>
+            </VBox>
+            <Label layoutX="138.0" layoutY="14.0" text="Menu">
+               <font>
+                  <Font name="Bank Gothic Medium BT" size="28.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </left>
+   <right>
+      <AnchorPane prefHeight="480.0" prefWidth="363.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="42.0" layoutY="201.0" text="TechShop" textFill="#1e1e1e">
+               <font>
+                  <Font name="Bank Gothic Medium BT" size="34.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>
