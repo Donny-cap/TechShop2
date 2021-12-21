@@ -101,4 +101,23 @@ public class connectionsql {
         }
         return list;
     }
+
+    public static ObservableList<oop_technics_delivered> getData_technics_delivered() {
+        Connection conn = getConnection();
+        ObservableList<oop_technics_delivered> list = FXCollections.observableArrayList();
+        try {
+            assert conn != null;
+            PreparedStatement ps = conn.prepareStatement("select * from `techshop`.`delivered`");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                list.add(new oop_technics_delivered(rs.getInt("id"), rs.getString("name"), rs.getString("manufacturer"), rs.getInt("quantity"), rs.getDate("date")));
+            }
+            ps.close();
+            conn.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return list;
+    }
 }

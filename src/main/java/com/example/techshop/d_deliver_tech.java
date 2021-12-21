@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 
 import static com.example.techshop.connectionsql.getConnection;
 
-public class w_delete_tech implements Initializable {
+public class d_deliver_tech implements Initializable {
     @FXML
     private TableColumn<oop_technics_ordered, Integer> col_cost;
 
@@ -46,15 +46,26 @@ public class w_delete_tech implements Initializable {
     @FXML
     void back() throws IOException {
         Main m = new Main();
-        m.changeScene("worker_menu.fxml");
+        m.changeScene("delivery_menu.fxml");
     }
 
     @FXML
-    void delete() throws SQLException {
+    void deliver() throws SQLException {
 
         Connection conn = getConnection();
-        PreparedStatement ps = conn.prepareStatement("DELETE FROM `ordered_tech` WHERE `id` = '" + table_tech.getSelectionModel().getSelectedItem().getNumber() + "'");
+        assert conn != null;
+        PreparedStatement ps = conn.prepareStatement("Select `name`, `mark`, `quantity` from `ordered_tech` WHERE `id` = '" + table_tech.getSelectionModel().getSelectedItem().getNumber() + "'");
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()){
+            System.out.println(true);
+            ps = conn.prepareStatement("UPDATE `technics` SET `quantity`=`quantity` + '" + rs.getString("quantity") + "' WHERE `name` = '" + rs.getString("name") + "' and `mark` = '" + rs.getString("mark") + "'");
+            ps.execute();
+        }
+
+        ps = conn.prepareStatement("DELETE FROM `ordered_tech` WHERE `id` = '" + table_tech.getSelectionModel().getSelectedItem().getNumber() + "'");
         ps.execute();
+        rs.close();
         ps.close();
         conn.close();
 

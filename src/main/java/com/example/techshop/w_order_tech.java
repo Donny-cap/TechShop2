@@ -12,7 +12,17 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.ResourceBundle;
+
+import static com.example.techshop.connectionsql.getConnection;
 
 public class w_order_tech implements Initializable {
     @FXML
@@ -51,9 +61,58 @@ public class w_order_tech implements Initializable {
         m.changeScene("worker_menu.fxml");
     }
 
-    @FXML
-    void order(ActionEvent event) {
 
+    @FXML
+
+    boolean isNumeric(String str){
+        try{
+            Double.parseDouble(str);
+            return true;
+        }catch(NumberFormatException e){
+            return false;
+        }
+    }
+
+    @FXML
+    void order(ActionEvent event) throws SQLException {
+        error_label.setText("");
+        Connection conn = getConnection();
+        PreparedStatement ps = conn.prepareStatement("select `id` from `techshop`.technics");
+        ResultSet rs = ps.executeQuery();
+
+        HashSet<String> list = new HashSet<>();
+
+        while (rs.next()){
+            list.add(rs.getString("id"));
+        }
+
+
+        if(!(isNumeric(quantity.getText()))){
+            error_label.setText("Invalid data type");
+            return;
+        }
+
+        if(list.contains(id_tech.getText())){
+
+            LocalDate d = LocalDate.now(); // Gets the current date
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String date = d.format(formatter);
+
+            ps = conn.prepareStatement("select * from `techshop`.technics WHERE `id` = '" + id_tech.getText() + "'");
+            rs = ps.executeQuery();
+
+            while (rs.next()){
+                PreparedStatement ps1 = conn.prepareStatement("INSERT INTO `ordered_tech`(`name`, `manufacturer`, `mark`, `quantity`, `cost`, `date`) VALUES ('" + rs.getString("name") + "','" + rs.getString("manufacturer") + "','" + rs.getString("mark") + "','" + quantity.getText() + "','" + rs.getString("cost") + "','" + date + "')");
+                ps1.execute();
+            }
+
+            rs.close();
+            ps.close();
+            conn.close();
+
+        }else{
+            error_label.setText("There is no such id");
+        }
     }
 
     ObservableList<oop_technics> listM;

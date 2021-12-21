@@ -20,7 +20,7 @@
                   <TableColumn fx:id="col_mark" prefWidth="154.4000244140625" text="Mark" />
                   <TableColumn fx:id="col_manufacturer" prefWidth="140.79998779296875" text="Manufacturer" />
                   <TableColumn fx:id="col_quantity" prefWidth="62.39996337890625" text="Quantity" />
-                  <TableColumn fx:id="col_cost" prefWidth="72.0" text="Cost" />
+                  <TableColumn fx:id="col_cost" prefWidth="86.39999999999998" text="Cost" />
                </columns>
             </TableView>
             <Label layoutX="168.0" layoutY="3.0" text="Order haushold appliances">
@@ -42,7 +42,7 @@
                   <Font name="Bank Gothic Medium BT" size="17.0" />
                </font>
             </Label>
-            <Label fx:id="error_label" layoutX="18.0" layoutY="430.0" textFill="RED" />
+            <Label fx:id="error_label" layoutX="18.0" layoutY="430.0" prefHeight="18.0" prefWidth="231.0" textFill="RED" />
          </children>
       </AnchorPane>
    </center>

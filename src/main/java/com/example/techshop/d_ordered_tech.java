@@ -1,24 +1,20 @@
 package com.example.techshop;
 
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-import static com.example.techshop.connectionsql.getConnection;
-
-public class w_delete_tech implements Initializable {
+public class d_ordered_tech implements Initializable {
     @FXML
     private TableColumn<oop_technics_ordered, Integer> col_cost;
 
@@ -44,26 +40,19 @@ public class w_delete_tech implements Initializable {
     private TableView<oop_technics_ordered> table_tech;
 
     @FXML
-    void back() throws IOException {
-        Main m = new Main();
-        m.changeScene("worker_menu.fxml");
-    }
+    private Label TotalQuantityLabel;
 
     @FXML
-    void delete() throws SQLException {
-
-        Connection conn = getConnection();
-        PreparedStatement ps = conn.prepareStatement("DELETE FROM `ordered_tech` WHERE `id` = '" + table_tech.getSelectionModel().getSelectedItem().getNumber() + "'");
-        ps.execute();
-        ps.close();
-        conn.close();
-
-        UpdateTable();
-
+    void back() throws IOException {
+        Main m = new Main();
+        m.changeScene("delivery_menu.fxml");
     }
 
     ObservableList<oop_technics_ordered> listM;
     public void UpdateTable() {
+
+        int quantity = 0;
+
         col_num.setCellValueFactory(new PropertyValueFactory<>("number"));
         col_name.setCellValueFactory(new PropertyValueFactory<>("name"));
         col_mark.setCellValueFactory(new PropertyValueFactory<>("mark"));
@@ -74,6 +63,12 @@ public class w_delete_tech implements Initializable {
 
         listM = connectionsql.getData_technics_ordered();
         table_tech.setItems(listM);
+
+        for(oop_technics_ordered d : listM){
+            quantity += d.getQuantity();
+        }
+
+        TotalQuantityLabel.setText("Total quantity: " + quantity);
     }
 
     @Override

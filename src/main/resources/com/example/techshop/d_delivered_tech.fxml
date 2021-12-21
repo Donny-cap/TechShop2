@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.techshop.d_delivered_tech">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="143.0" layoutY="14.0" text="Delivered haushold appliances">
+               <font>
+                  <Font name="Bank Gothic Medium BT" size="20.0" />
+               </font>
+            </Label>
+            <JFXButton layoutX="492.0" layoutY="440.0" onAction="#back" prefHeight="19.0" prefWidth="134.0" style="-fx-background-color: #08c6ab;" text="Back" />
+            <TableView fx:id="table_tech" layoutX="7.0" layoutY="43.0" prefHeight="377.0" prefWidth="630.0">
+               <columns>
+                  <TableColumn fx:id="col_num" minWidth="8.0" prefWidth="20.800018310546875" text="№" />
+                  <TableColumn fx:id="col_name" prefWidth="225.60000610351562" text="Name" />
+                  <TableColumn fx:id="col_manufacturer" prefWidth="172.79998779296875" text="Manufacturer" />
+                  <TableColumn fx:id="col_quantity" prefWidth="64.0" text="Quantity" />
+                  <TableColumn fx:id="col_date" prefWidth="132.0" text="Date" />
+               </columns>
+            </TableView>
+            <Label fx:id="TotalQuantityLabel" layoutX="29.0" layoutY="444.0" prefHeight="18.0" prefWidth="246.0" text="Total quantity:" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
