@@ -1,7 +1,6 @@
 package com.example.techshop;
 
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -18,7 +17,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 
@@ -74,9 +72,10 @@ public class w_order_tech implements Initializable {
     }
 
     @FXML
-    void order(ActionEvent event) throws SQLException {
+    void order() throws SQLException {
         error_label.setText("");
         Connection conn = getConnection();
+        assert conn != null;
         PreparedStatement ps = conn.prepareStatement("select `id` from `techshop`.technics");
         ResultSet rs = ps.executeQuery();
 
@@ -105,6 +104,10 @@ public class w_order_tech implements Initializable {
                 PreparedStatement ps1 = conn.prepareStatement("INSERT INTO `ordered_tech`(`name`, `manufacturer`, `mark`, `quantity`, `cost`, `date`) VALUES ('" + rs.getString("name") + "','" + rs.getString("manufacturer") + "','" + rs.getString("mark") + "','" + quantity.getText() + "','" + rs.getString("cost") + "','" + date + "')");
                 ps1.execute();
             }
+            error_label.setText("Success");
+            id_tech.setText("");
+            quantity.setText("");
+
 
             rs.close();
             ps.close();

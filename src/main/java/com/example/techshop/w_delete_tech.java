@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -53,6 +52,7 @@ public class w_delete_tech implements Initializable {
     void delete() throws SQLException {
 
         Connection conn = getConnection();
+        assert conn != null;
         PreparedStatement ps = conn.prepareStatement("DELETE FROM `ordered_tech` WHERE `id` = '" + table_tech.getSelectionModel().getSelectedItem().getNumber() + "'");
         ps.execute();
         ps.close();
